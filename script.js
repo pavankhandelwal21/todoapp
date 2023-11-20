@@ -16,7 +16,7 @@ const completedCount = document.getElementById("completed-count");
 
 const date = new Date();
 let todoarray = [];
-storeinlocalstorage(todoarray);
+console.log(date.getHours());
 
 todoPriority.textContent = todoRange.value;
 
@@ -127,7 +127,8 @@ function bindDeleteBtnEvent(){
     })
 }
 function createcards(){
-    todoarray = JSON.parse(localStorage.getItem("stored__todos"));
+    todoarray = (JSON.parse(localStorage.getItem("stored__todos")) != null)?JSON.parse(localStorage.getItem("stored__todos")): [] ;
+    console.log(todoarray.length);
     if (todoarray.length){
         todoBody.innerHTML = '';
         // todoarray = [];
