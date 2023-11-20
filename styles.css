@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
+
+:root{
+    --blue:  #4169E1;
+    --red:  #FF3860;
+    --green: #23D160;
+    --white: white;
+    --bgcolor: #1B1B1B;
+    --black:  black;
+    --pending: #FF3860;
+    --completed:  #23D160;
+    --lightseagreen: lightseagreen;
+}
+body{
+    box-sizing: border-box;
+    background-color: var(--black);
+    font-family: 'Poppins', sans-serif;
+    color: var(--white);
+    padding: 0;
+    margin: 0;
+}
+.todo-app-logo{
+    display: flex;
+}
+.bold-font{
+    font-weight: 600;
+}
+.green{
+    color: var(--green);
+}
+.red{
+    color: var(--red);
+}
+.blue{
+    color: var(--blue);
+}
+.white{
+    color: var(--white);
+}
+.pendingcolor{
+    color: var(--pending);
+}
+.pendingborderbox{
+    box-shadow: -3px 3px var(--pending);
+}
+.completedcolor{
+    color: var(--completed);
+}
+.completedborderbox{
+    box-shadow: -3px 3px var(--completed);
+}
+a{
+    text-decoration: none;
+}
+.main-border{
+    border-bottom: 1px solid var(--blue);
+}
+.heading{
+    display: flex;
+    font-size: large;
+    justify-content: space-between;
+}
+.padding{
+    padding: 0 10%;
+}
+.addtodo{
+    background-color: var(--green);
+    font-size: x-large;
+    padding: 8px 20px;
+}
+button{
+    border-radius: 5px;
+    padding: 5px 15px;
+    border: 0px;
+    cursor: pointer;
+}
+.hide{
+    visibility: hidden;
+}
+.displaynone{
+    display:none;
+}
+.dropdown-toggle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sort-by{
+    background-color: var(--bgcolor);
+    color: var(--white);
+    border-radius: 5px;
+    position: relative;
+    padding: 7px 14px;
+    border: 1px solid var(--bgcolor);
+    transition: all ease 500ms;
+}
+.sort-by-blue{
+    transition: all ease 500ms;
+    color:  var(--blue);
+    border: 1px solid;
+}
+.right-content{
+    margin: auto 0;
+}
+.magic{
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--bgcolor);
+    background-color: var(--bgcolor);
+    font-size: smaller;
+    margin-right: 60px;
+    opacity: 0;
+    transition: all ease 300ms;
+}
+.container{
+    display: flex;
+    margin-top: 5px;
+    justify-content: space-between;
+}
+.margintopbottom-20{
+    margin: 20px 0;
+}
+.margin-8{
+    padding: 5px;
+    border-radius: 5px;
+    margin: 8px;
+}
+.menu-bar{
+    display: flex;
+}
+.total{
+    border: 1px solid var(--blue);
+    margin: 8px 8px 8px 0 !important;
+    background-color: var(--bgcolor);
+    
+}
+.completed{
+    border: 1px solid var(--green);
+    background-color: var(--bgcolor);
+}
+.pending{
+    border: 1px solid var(--red);
+    background-color: var(--bgcolor);
+}
+.hide{
+    display: none !important;
+}
+.list{
+    width: 150px;
+    text-align: center;
+    position: absolute;
+    background-color: var(--bgcolor);
+    top: 250px;
+    display: none;
+    animation: movelist-down 600ms;
+}
+.show-sorted-list{
+    top: 160px;
+    display: block;
+    animation: movelist-up 600ms;
+}
+.list a:nth-child(1){
+    border-radius: 10px 10px 0 0;
+}
+.list a:nth-last-child(1){
+    border-radius: 0 0 10px 10px;
+}
+.list a{
+    display: block;
+    border: 1px solid var(--blue);
+    color: var(--white);
+    padding: 5px 10px;
+}
+.list a:hover{
+    background-color: var(--blue);
+    color: var(--bgcolor);
+}
+.end-container{
+    display: flex;
+    justify-content: space-between;
+}
+.todobody{
+    background-color: var(--bgcolor);
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;   
+}
+.rotate{
+    margin: auto;
+    transition: all ease 400ms;
+}
+.heading a:hover .strike1{
+    position: relative;
+    animation: logo-jumper 600ms;
+}
+.heading a:hover .strike2{
+    position: relative;
+    animation: logo-jumper 600ms ease-in 600ms;
+}
+.heading a:hover .strike3{
+    position: relative;
+    animation: logo-jumper 600ms ease-in 1.2s;
+}
+.addtodo:hover .rotate{
+    transform: rotate(180deg);
+    transition: all ease 400ms;
+}
+.right-content:hover .magic{
+    opacity: 1;
+    margin-right: 0px
+}
+.todolist-container{
+    background-color: var(--bgcolor);
+    padding: 5px 10px;
+    border-radius: 10px;  
+}
+.todolist-heading{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--white);
+}
+.small-font{
+    font-size: small;
+}
+.todolist-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.d-flex{
+    display: flex;
+}
+.padding-2{
+    padding: 2px;
+}
+.todolist-body{
+    margin: 30px 0;
+}
+.margin-10{
+    margin: 10px 0;
+}
+.card-heading{
+    font-weight: 800;
+}
+.pointer{
+    cursor: pointer;
+}
+.pointer:hover{
+    font-size: 14px;
+    color: #878686;
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    background-color: var(--bgcolor);
+    width: 100%;
+}
+.footer-text{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background: linear-gradient( 
+            to right, #f32170, #ff6b08, 
+             #cf23cf, #eedd44); 
+        -webkit-text-fill-color: transparent; 
+        -webkit-background-clip: text; 
+}
+.add-popup{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+.add-todo{
+    background-color: var(--black);
+    width: 60%;
+    height: 450px;
+    position: relative;
+    top: 80px;
+    left: 50%;
+    translate: -50%;
+    border: 1px solid var(--blue);
+    border-radius: 5px;
+    padding: 10px;
+}
+.close-btn{
+    background-color: var(--white);
+    color: var(--red);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border: 1px solid var(--black);
+}
+.close-btn:hover{
+    transform: rotate(180deg);
+    transition: all ease 400ms;
+    background-color: var(--red);
+    color: var(--black);
+}
+.add-todo-heading{
+    color: var(--blue);
+    border-bottom: 1px solid var(--white);
+    font-size: xx-large;
+    margin: 10px 0;
+}
+.formdata{
+    padding: 10px;
+    overflow: auto;
+}
+.enter-todo{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--bgcolor);
+    border: 1px solid var(--bgcolor);
+    color: var(--white);
+    width: 90%;
+    font-size: medium;
+    margin: 20px 0;
+}
+.todo-range{
+    width: 90%;
+}
+.add-button{
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid var(--lightseagreen);
+    background-color: var(--lightseagreen);
+    color: var(--white);
+    transition: all ease 400ms;
+    margin-top: 30px;
+}
+.add-button:hover{
+    transition: all ease 400ms;
+    border: 1px solid rgb(39, 134, 130);
+    background-color: rgb(39, 134, 130);
+}
+.add-button:active{
+    transition: all ease 400ms;
+    border: 1px solid var(--white);
+    background-color: var(--white);
+    color: var(--black);
+}
+.margintop-30{
+    margin-top: 40px;
+}
+
+/* @keyframes textmove {
+    0% {opacity: 0;  margin-right: 60px;}
+    100% {opacity: 1; margin-right: 0px;}
+} */
+
+@keyframes logo-jumper {
+    0% { text-decoration: line-through; top: 0px}
+    20% { text-decoration: line-through; top: 5px}
+    40% { text-decoration: line-through; top: -5px}
+    60% { text-decoration: line-through; top: 5px}
+    80% { text-decoration: line-through; top: -5px}
+    100% {text-decoration: line-through; top: 0px}
+}
+@keyframes movelist-up {
+    0%{opacity: 0; top: 250px}
+    100% {opacity: 1; top: 160px}
+}
+@keyframes movelist-down {
+    0%{opacity: 1; top: 160px; display: block;}
+    100% {opacity: 0; top: 250px; display: none;}
+}
