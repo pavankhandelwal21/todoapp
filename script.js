@@ -16,6 +16,7 @@ const completedCount = document.getElementById("completed-count");
 
 const date = new Date();
 let todoarray = [];
+storeinlocalstorage(todoarray);
 
 todoPriority.textContent = todoRange.value;
 
@@ -127,7 +128,6 @@ function bindDeleteBtnEvent(){
 }
 function createcards(){
     todoarray = JSON.parse(localStorage.getItem("stored__todos"));
-    console.log(todoarray);
     if (todoarray.length){
         todoBody.innerHTML = '';
         // todoarray = [];
