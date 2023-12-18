@@ -4,19 +4,23 @@ const todoRange = document.getElementById("todo-range");
 const todaysDate = document.getElementById("todays-date");
 const todaysWeek = document.getElementById("todays-week");
 const closeBtn = document.getElementById("close-btn");
-const addPopup = document.getElementById("add-popup");
-const addTodo = document.getElementById("add-todo");
+const addEditPopup = document.getElementById("add-edit-popup");
+const addEditTodo = document.getElementById("add-edit-todo");
 const addTodoBtn = document.getElementById("add-todo-btn");
+const editTodoBtn = document.getElementById("edit-todo-btn");
 const todoBodyBox = document.getElementById("todo-body-box");
 const todoBody = document.getElementById("todo-body");
 const todoCompleted = document.getElementById("completed-checkbox");
 const totalCount = document.getElementById("total-count");
 const pendingCount = document.getElementById("pending-count");
 const completedCount = document.getElementById("completed-count");
+const todoPopupHeading = document.getElementById("todo-popup-heading");
 
 const date = new Date();
 let todoarray = [];
-console.log(date.getHours());
+let selectIdToEdit;
+let indexToEdit;
+// console.log(date.getHours());
 
 todoPriority.textContent = todoRange.value;
 
@@ -35,8 +39,10 @@ function generateDate(needweek, needdate){
         return ("Happy" + " " + date.toLocaleDateString('en-US', { weekday: 'long' }) + " " + "😎");
     }
 }
-function hidenResetAdd(){
-    addPopup.classList.add('hide');
+function hideAddEditPopup(){
+    addEditPopup.classList.add('hide');
+    addTodoBtn.classList.remove('hide');
+    editTodoBtn.classList.remove('hide');
     todoBodyBox.value = "";
 }
 function hoursNminutes(){
@@ -51,6 +57,13 @@ function object(arr, todobodyvalue, priority){
     arr["completed"] = todoCompleted.checked == true? true : false;
     arr["LastUpdated"] = (generateDate(1, 0) + " at " + hoursNminutes());
     arr["AddedDate"] = (generateDate(1, 0) + " at " + hoursNminutes());
+}
+function editObject(todobodyvalue, priority){
+    indexToEdit.todobody = todobodyvalue;
+    indexToEdit.priority = priority;
+    indexToEdit.completed = todoCompleted.checked == true? true : false;
+    indexToEdit.LastUpdated = (generateDate(1, 0) + " at " + hoursNminutes());
+    indexToEdit.AddedDate = indexToEdit.AddedDate;
 }
 function buildCard(todo){
     if (todo["completed"] == true){
@@ -119,16 +132,39 @@ function bindDeleteBtnEvent(){
                 // method 2:
                 todoarray = todoarray.filter(t => t.id !== selectedId);
 
-                console.log(todoarray);
+                // console.log(todoarray);
                 storeinlocalstorage(todoarray);
                 createcards()
             }
         })
     })
 }
+function bindEditBtnEvent(){
+    const isedited = document.querySelectorAll('.edit-todo-btn');
+
+    isedited.forEach(edited =>{
+        edited.addEventListener("click", (e)=>{
+            selectIdToEdit = e.target.parentElement.id;
+            // console.log(selectIdToEdit)
+            if (todoarray.length && selectIdToEdit) {
+                // console.log(todoarray.findIndex(t => t.id == selectIdToEdit));
+                indexToEdit = todoarray[todoarray.findIndex(t => t.id == selectIdToEdit)];
+                // console.log(indexToEdit.todobody);
+                todoBodyBox.value = indexToEdit.todobody;
+                todoPriority.innerHTML = todoRange.value = indexToEdit.priority;
+                todoCompleted.checked = indexToEdit.completed;
+                todoPopupHeading.innerHTML = `Edit ToDo`;
+                // addTodoBtn.value = `Update`;
+                addTodoBtn.classList.add('hide');
+                addEditPopup.classList.remove('hide');
+            }
+        })
+    })
+
+}
 function createcards(){
     todoarray = (JSON.parse(localStorage.getItem("stored__todos")) != null)?JSON.parse(localStorage.getItem("stored__todos")): [] ;
-    console.log(todoarray.length);
+    // console.log(todoarray.length);
     if (todoarray.length){
         todoBody.innerHTML = '';
         // todoarray = [];
@@ -144,9 +180,10 @@ function createcards(){
         document.querySelector('#emptytodo').classList.remove('displaynone');
 
     }
-    console.log(!todoarray.length);
+    // console.log(!todoarray.length);
     noTodoCard()
     bindDeleteBtnEvent()
+    bindEditBtnEvent()
     totalCount.innerHTML = todoarray.length;
     let pendingcount = 0;
     let completedcount = 0;
@@ -166,10 +203,16 @@ todoRange.addEventListener("input", ()=>{
     todoPriority.textContent = todoRange.value;
 })
 closeBtn.addEventListener("click", ()=>{
-    hidenResetAdd()
+    hideAddEditPopup()
 })
-addTodo.addEventListener("click", ()=>{
-    addPopup.classList.remove('hide');
+addEditTodo.addEventListener("click", ()=>{
+    todoBodyBox.value = ``;
+    todoPriority.innerHTML = todoRange.value = 1;
+    todoCompleted.checked = false;
+    todoPopupHeading.innerHTML = `Add ToDo`;
+    // addTodoBtn.value = `Add`;
+    editTodoBtn.classList.add('hide');
+    addEditPopup.classList.remove('hide');
 })
 
 createcards()
@@ -185,14 +228,28 @@ addTodoBtn.addEventListener("click", ()=>{
     }
     if (todobodyvalue != ""){
         object(arr, todobodyvalue, priority)
-        hidenResetAdd()
+        hideAddEditPopup()
         todoarray.push(arr);
-        console.log(arr);
+        // console.log(arr);
         storeinlocalstorage(todoarray)
         createcards()
     }
 })
 
+editTodoBtn.addEventListener("click", ()=>{
+    // let arr = {};
+    let todobodyvalue = todoBodyBox.value;
+    let priority = todoRange.value;
+    if (todobodyvalue == ""){
+        alert("Please enter a ToDo")
+    }
+    if (todobodyvalue != "" && selectIdToEdit == indexToEdit.id){
+        editObject(todobodyvalue, priority);
+        storeinlocalstorage(todoarray);
+        hideAddEditPopup();
+        createcards();
+    }
+})
 
 
 // bindDeleteBtnEvent()

@@ -11,7 +11,7 @@
         <a class="todo-app-logo" href="/"><h1 class="green strike1">To</h1><h1 class="red strike2">Do</h1> &nbsp; <h1 class="blue strike3">App</h1></a>
         <div class="right-content">
             <span class="magic">Add ToDo</span>
-            <button id="add-todo" class="addtodo"><p class="rotate">+</p></button>
+            <button id="add-edit-todo" class="addtodo"><p class="rotate">+</p></button>
         </div>
     </div>
 
@@ -74,10 +74,10 @@
 
     <!-- Add TODO Popup -->
 
-    <div id="add-popup" class="add-popup hide">
-        <div class="add-todo">
+    <div id="add-edit-popup" class="add-edit-popup hide">
+        <div class="add-edit-todo">
             <button id="close-btn" class="close-btn rotate">X</button>
-            <h2 class="add-todo-heading">Add ToDo</h2>
+            <h2 id="todo-popup-heading" class="add-edit-todo-heading">Add ToDo</h2>
             <div class="formdata">
                 <p>
                     <label for="enter-todo">Enter ToDo</label> 
@@ -106,7 +106,8 @@
                         <label for="completed-checkbox">Completed</label>
                     </p>
                 </div>
-                <input id="add-todo-btn" class="add-button" type="submit" value="Add">
+                <input id="add-todo-btn" class="add-edit-btn" type="submit" value="Add">
+                <input id="edit-todo-btn" class="add-edit-btn" type="submit" value="Update">
             </div>
         </div>
     </div>

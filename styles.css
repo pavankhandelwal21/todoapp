@@ -267,14 +267,17 @@ button{
         -webkit-text-fill-color: transparent; 
         /* -webkit-background-clip: text;  */
 }
-.add-popup{
+.add-edit-popup{
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
-.add-todo{
+.add-edit-todo{
     background-color: var(--black);
     width: 60%;
     height: 450px;
@@ -306,7 +309,7 @@ button{
     background-color: var(--red);
     color: var(--black);
 }
-.add-todo-heading{
+.add-edit-todo-heading{
     color: var(--blue);
     border-bottom: 1px solid var(--white);
     font-size: xx-large;
@@ -329,7 +332,7 @@ button{
 .todo-range{
     width: 90%;
 }
-.add-button{
+.add-edit-btn{
     padding: 10px 20px;
     border-radius: 5px;
     border: 1px solid var(--lightseagreen);
@@ -338,12 +341,12 @@ button{
     transition: all ease 400ms;
     margin-top: 30px;
 }
-.add-button:hover{
+.add-edit-btn:hover{
     transition: all ease 400ms;
     border: 1px solid rgb(39, 134, 130);
     background-color: rgb(39, 134, 130);
 }
-.add-button:active{
+.add-edit-btn:active{
     transition: all ease 400ms;
     border: 1px solid var(--white);
     background-color: var(--white);
